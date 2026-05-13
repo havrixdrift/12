@@ -195,6 +195,33 @@ layout: null
         var countryTitleText = document.querySelector(".section-title-country-text");
         if (countryTitleText) { var ct = ["Explore by Country","Destinations","Travel by Country","Countries","Browse by Country","Where to Go"]; countryTitleText.textContent = ct[domainHash % 6]; }
 
+        // Paragraf dinamis dari domain
+        var welcomePara = document.getElementById("welcomePara");
+        if (welcomePara) {
+            var welcomes = [
+                "Welcome to " + title + ", a travel blog about amazing destinations around the world. Discover beautiful places, hidden gems, and travel tips.",
+                "Explore the world with " + title + ". Your guide to unforgettable vacations, stunning locations, and travel inspiration.",
+                title + " brings you the best travel guides, vacation ideas, and destination reviews. Start your journey here.",
+                "Plan your next adventure with " + title + ". We cover top destinations, travel hacks, and must-visit places.",
+                "Welcome to " + title + " — your travel companion for discovering new countries, cultures, and experiences.",
+                title + " is a travel blog dedicated to helping you find the perfect vacation spot. Browse our latest posts."
+            ];
+            welcomePara.textContent = welcomes[domainHash % welcomes.length];
+        }
+
+        var footerPara = document.getElementById("footerPara");
+        if (footerPara) {
+            var footers = [
+                "Discover the beauty of the world through " + title + ". Explore stunning destinations, travel guides, and more.",
+                "Thank you for visiting " + title + ". We hope our travel guides inspire your next vacation.",
+                title + " — your trusted source for travel inspiration and destination guides.",
+                "Keep exploring with " + title + ". New destinations and travel tips added regularly.",
+                "Find your next adventure on " + title + ". Browse our collection of travel stories and guides.",
+                "Travel far, travel often. " + title + " is here to guide your journey."
+            ];
+            footerPara.textContent = footers[domainHash % footers.length];
+        }
+
         var toggleBtnBlog = document.getElementById("blogMenuToggle"), iconMenuBlog = document.getElementById("blogIconMenu"), iconCloseBlog = document.getElementById("blogIconClose");
         function updateBlogMenuPosition() { if (menuPanel && menuPanel.style.display === "block" && toggleBtnBlog) { var btnRect = toggleBtnBlog.getBoundingClientRect(); menuPanel.style.top = (btnRect.bottom + 5) + "px"; menuPanel.style.right = (window.innerWidth - btnRect.right) + "px"; } }
         if (toggleBtnBlog && menuPanel && iconMenuBlog && iconCloseBlog) {
@@ -290,18 +317,51 @@ layout: null
         .country-links a{display:block;padding:0.4rem 0.5rem;background:#fff;border:1px solid #e5e5e5;border-radius:var(--card-radius);font-size:0.68rem;color:#333;text-decoration:none;text-align:center;transition:all 0.15s ease;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
         .country-links a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light);}
 
+        /* FEATURED HOME */
+        #homeFeaturedWrap{margin-top:40px;}
+        #homeFeaturedWrap h2{font-size:1.3rem;font-weight:700;margin-bottom:1rem;padding-bottom:0.5rem;}
+        .home-featured-main{background:#fff;border-radius:20px;overflow:hidden;margin-bottom:36px;box-shadow:0 10px 30px rgba(0,0,0,0.05);}
+        .home-featured-thumb{aspect-ratio:16/9;overflow:hidden;}
+        .home-featured-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+        .home-featured-content{padding:28px;}
+        .home-featured-title{font-size:32px;line-height:1.3;margin:0 0 14px;}
+        .home-featured-title a{text-decoration:none;color:#111;}
+        .home-featured-title a:hover{color:var(--accent);}
+        .home-featured-desc{font-size:16px;line-height:1.7;color:#666;margin:0;}
+        .home-featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+        .home-grid-card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.04);transition:0.3s;}
+        .home-grid-card:hover{transform:translateY(-4px);}
+        .home-grid-thumb{aspect-ratio:16/9;overflow:hidden;}
+        .home-grid-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+        .home-grid-content{padding:18px;}
+        .home-grid-title{font-size:19px;line-height:1.4;margin:0 0 10px;}
+        .home-grid-title a{text-decoration:none;color:#111;}
+        .home-grid-title a:hover{color:var(--accent);}
+        .home-grid-desc{font-size:14px;line-height:1.7;color:#666;margin:0;}
+
         @media(min-width:1025px){
             .blog-header-main.floating-header-main{padding:12px 24px;}.header-content-main{max-width:1400px;}.blog-title-main{font-size:22px;}.menu-btn-main{width:40px;height:40px;}.menu-icon-main{width:26px;height:26px;}#blogMenuPanel{top:65px;right:24px;padding:20px;min-width:220px;max-width:250px;}#blogMenuPanel a{padding:12px 16px;font-size:15px;margin-bottom:4px;}.header-spacer{height:70px;}
         }
         @media(max-width:1024px) and (min-width:769px){
             .latest-grid.grid-3{grid-template-columns:repeat(2,1fr);}.popular-list.grid-4{grid-template-columns:repeat(2,1fr);}
             .country-links.grid-6{grid-template-columns:repeat(4,1fr);}.country-links.grid-4{grid-template-columns:repeat(3,1fr);}.country-links.grid-3{grid-template-columns:repeat(2,1fr);}.country-links.masonry{columns:2;}
+            .home-featured-grid{grid-template-columns:repeat(2,1fr);}.home-featured-title{font-size:28px;}
             .header-spacer{height:58px;}
         }
         @media(max-width:768px){
             .latest-grid.grid-3,.latest-grid.grid-2{grid-template-columns:1fr;}.popular-list.grid-2,.popular-list.grid-4{grid-template-columns:1fr;}
             .latest-grid.list-row .latest-card{flex-direction:column;}.latest-grid.list-row .latest-img{width:100%;}
             .country-links.grid-6{grid-template-columns:repeat(3,1fr);}.country-links.grid-4{grid-template-columns:repeat(2,1fr);}.country-links.grid-3{grid-template-columns:repeat(2,1fr);}.country-links.list-2{grid-template-columns:1fr;}.country-links.masonry{columns:2;}
+            #homeFeaturedWrap{margin-top:20px;}
+            .home-featured-main{border-radius:16px;margin-bottom:24px;}
+            .home-featured-content{padding:18px;}
+            .home-featured-title{font-size:22px;line-height:1.4;margin-bottom:10px;}
+            .home-featured-desc{font-size:14px;line-height:1.7;}
+            .home-featured-grid{grid-template-columns:repeat(2,1fr);gap:14px;}
+            .home-grid-card{border-radius:14px;}
+            .home-grid-content{padding:12px;}
+            .home-grid-title{font-size:14px;line-height:1.4;margin-bottom:6px;}
+            .home-grid-desc{font-size:12px;line-height:1.5;}
             .homepage-container{padding:1rem;}.header-spacer{height:52px;}
         }
         @media(max-width:480px){
@@ -314,9 +374,9 @@ layout: null
 
     <div class="header-spacer"></div>
     <div class="homepage-container">
-<br /><br />
-<p>Welcome to my travel blog about Albania, a hidden gem in Southeast Europe. Albania offers beautiful beaches, amazing mountains, historic cities, and rich cultural heritage. In this blog, you will find interesting places such as the Albanian Riviera, Berat, and Theth National Park. Albania is a perfect destination for travelers who love nature, history, and adventure.</p>
-<br />
+
+        <p id="welcomePara">Welcome to my travel blog. Discover amazing destinations, travel tips, and hidden gems around the world.</p>
+
         <!-- LATEST POSTS -->
         {% assign latest_posts = site.categories.pisah01a | limit: 15 %}
         {% if latest_posts.size > 0 %}
@@ -363,500 +423,57 @@ layout: null
         </div>
         {% endif %}
 
-<!-- Homepage Featured + Grid (Desktop Rapi + Mobile 2 Kolom) -->
+        <!-- MUST READ (Featured + Grid) -->
+        <div id="homeFeaturedWrap">
+            <h2>Must Read</h2>
+            {% assign main_post = site.categories.pisah01 | first %}
 
-<div id="homeFeaturedWrap">
-<h2>Must Read</h2>
-    {% assign main_post = site.categories.pisah01.first %}
-
-    <!-- Featured Post -->
-    {% if main_post %}
-    <div class="home-featured-main">
-
-        <a href="{{ main_post.url }}">
-            {% if main_post.image %}
-            <div class="home-featured-thumb">
-                <img
-                    src="{{ main_post.image | relative_url }}"
-                    alt="{{ main_post.title }}"
-                    loading="lazy">
-            </div>
-            {% endif %}
-        </a>
-
-        <div class="home-featured-content">
-            <h2 class="home-featured-title">
+            {% if main_post %}
+            <div class="home-featured-main">
                 <a href="{{ main_post.url }}">
-                    {{ main_post.title }}
+                    {% if main_post.image %}
+                    <div class="home-featured-thumb">
+                        <img src="{{ main_post.image | relative_url }}" alt="{{ main_post.title }}" loading="lazy">
+                    </div>
+                    {% endif %}
                 </a>
-            </h2>
-
-            {% if main_post.description %}
-            <p class="home-featured-desc">
-                {{ main_post.description }}
-            </p>
-            {% endif %}
-            {% assign before_svg = post.content | split: '<p>' | first %}
-                        <div class="excerpt spo">{{ before_svg }}</div>
-        </div>
-
-    </div>
-    {% endif %}
-
-    <!-- Grid Posts -->
-    <div class="home-featured-grid">
-
-        {% for post in site.categories.pisah01 limit:4 offset:1 %}
-        <div class="home-grid-card">
-
-            {% if post.image %}
-            <div class="home-grid-thumb">
-                <a href="{{ post.url }}">
-                    <img
-                        src="{{ post.image | relative_url }}"
-                        alt="{{ post.title }}"
-                        loading="lazy">
-                </a>
+                <div class="home-featured-content">
+                    <h2 class="home-featured-title">
+                        <a href="{{ main_post.url }}">{{ main_post.title }}</a>
+                    </h2>
+                    {% if main_post.description %}
+                    <p class="home-featured-desc">{{ main_post.description }}</p>
+                    {% endif %}
+                    {% assign before_svg = main_post.content | split: '<p>' | first %}
+                    <div class="excerpt spo">{{ before_svg }}</div>
+                </div>
             </div>
             {% endif %}
 
-            <div class="home-grid-content">
-                <h3 class="home-grid-title">
-                    <a href="{{ post.url }}">
-                        {{ post.title }}
-                    </a>
-                </h3>
-
-                {% if post.description %}
-                <p class="home-grid-desc">
-                    {{ post.description }}
-                </p>
-                {% endif %}
-                {% assign before_svg = post.content | split: '<p>' | first %}
-                        <div class="excerpt spo">{{ before_svg }}</div>
-            </div>
-
-        </div>
-        {% endfor %}
-
-    </div>
-
-</div>
-
-<style>
-#homeFeaturedWrap {
-    margin-top: 40px;
-}
-
-/* Featured */
-.home-featured-main {
-    background: #fff;
-    border-radius: 20px;
-    overflow: hidden;
-    margin-bottom: 36px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-.home-featured-thumb {
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-}
-
-.home-featured-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.home-featured-content {
-    padding: 28px;
-}
-
-.home-featured-title {
-    font-size: 32px;
-    line-height: 1.3;
-    margin: 0 0 14px;
-}
-
-.home-featured-title a {
-    text-decoration: none;
-    color: #111;
-}
-
-.home-featured-desc {
-    font-size: 16px;
-    line-height: 1.7;
-    color: #666;
-    margin: 0;
-}
-
-/* Grid */
-.home-featured-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-}
-
-.home-grid-card {
-    background: #fff;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
-    transition: 0.3s;
-}
-
-.home-grid-card:hover {
-    transform: translateY(-4px);
-}
-
-.home-grid-thumb {
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-}
-
-.home-grid-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.home-grid-content {
-    padding: 18px;
-}
-
-.home-grid-title {
-    font-size: 19px;
-    line-height: 1.4;
-    margin: 0 0 10px;
-}
-
-.home-grid-title a {
-    text-decoration: none;
-    color: #111;
-}
-
-.home-grid-desc {
-    font-size: 14px;
-    line-height: 1.7;
-    color: #666;
-    margin: 0;
-}
-
-/* Tablet */
-@media (max-width: 992px) {
-    .home-featured-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .home-featured-title {
-        font-size: 28px;
-    }
-}
-
-/* Mobile tetap 2 kolom */
-@media (max-width: 768px) {
-    #homeFeaturedWrap {
-        margin-top: 20px;
-    }
-
-    .home-featured-main {
-        border-radius: 16px;
-        margin-bottom: 24px;
-    }
-
-    .home-featured-content {
-        padding: 18px;
-    }
-
-    .home-featured-title {
-        font-size: 22px;
-        line-height: 1.4;
-        margin-bottom: 10px;
-    }
-
-    .home-featured-desc {
-        font-size: 14px;
-        line-height: 1.7;
-    }
-
-    .home-featured-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
-    }
-
-    .home-grid-card {
-        border-radius: 14px;
-    }
-
-    .home-grid-content {
-        padding: 12px;
-    }
-
-    .home-grid-title {
-        font-size: 14px;
-        line-height: 1.4;
-        margin-bottom: 6px;
-    }
-
-    .home-grid-desc {
-        font-size: 12px;
-        line-height: 1.5;
-    }
-}
-</style>
-
-
-<!-- Spotlight Section (Desktop + Mobile Friendly, tetap 2 kolom di mobile) -->
-
-<section id="hfSpotlightSection">
-
-    <div class="hf-spotlight-heading">
-        <h2 class="hf-spotlight-title">Spotlight</h2>
-    </div>
-
-    {% assign hf_main_post = site.categories.pisah01.first %}
-
-    <div class="hf-spotlight-layout">
-
-        <!-- LEFT : Main Spotlight -->
-        {% if hf_main_post %}
-        <div class="hf-spotlight-main">
-
-            <a href="{{ hf_main_post.url }}">
-                {% if hf_main_post.image %}
-                <div class="hf-spotlight-main-thumb">
-                    <img
-                        src="{{ hf_main_post.image | relative_url }}"
-                        alt="{{ hf_main_post.title }}"
-                        loading="lazy">
-                </div>
-                {% endif %}
-            </a>
-
-            <div class="hf-spotlight-main-content">
-                <h3 class="hf-spotlight-main-title">
-                    <a href="{{ hf_main_post.url }}">
-                        {{ hf_main_post.title }}
-                    </a>
-                </h3>
-
-                {% if hf_main_post.description %}
-                <p class="hf-spotlight-main-desc">
-                    {{ hf_main_post.description }}
-                </p>
-                {% endif %}
-                {% assign before_svg = post.content | split: '<p>' | first %}
-                        <div class="excerpt spo">{{ before_svg }}</div>
-            </div>
-
-        </div>
-        {% endif %}
-
-        <!-- RIGHT : 2 Small Spotlight -->
-        <div class="hf-spotlight-side">
-
-            {% for post in site.categories.pisah01 limit:2 offset:1 %}
-            <div class="hf-spotlight-side-card">
-
-                {% if post.image %}
-                <div class="hf-spotlight-side-thumb">
-                    <a href="{{ post.url }}">
-                        <img
-                            src="{{ post.image | relative_url }}"
-                            alt="{{ post.title }}"
-                            loading="lazy">
-                    </a>
-                </div>
-                {% endif %}
-
-                <div class="hf-spotlight-side-content">
-                    <h4 class="hf-spotlight-side-title">
+            <div class="home-featured-grid">
+                {% for post in site.categories.pisah01 limit:4 offset:1 %}
+                <div class="home-grid-card">
+                    {% if post.image %}
+                    <div class="home-grid-thumb">
                         <a href="{{ post.url }}">
-                            {{ post.title }}
+                            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">
                         </a>
-                    </h4>
-                    {% assign before_svg = post.content | split: '<p>' | first %}
+                    </div>
+                    {% endif %}
+                    <div class="home-grid-content">
+                        <h3 class="home-grid-title">
+                            <a href="{{ post.url }}">{{ post.title }}</a>
+                        </h3>
+                        {% if post.description %}
+                        <p class="home-grid-desc">{{ post.description }}</p>
+                        {% endif %}
+                        {% assign before_svg = post.content | split: '<p>' | first %}
                         <div class="excerpt spo">{{ before_svg }}</div>
+                    </div>
                 </div>
-
+                {% endfor %}
             </div>
-            {% endfor %}
-
         </div>
-
-    </div>
-
-</section>
-
-<style>
-#hfSpotlightSection {
-    margin-top: 40px;
-}
-
-/* Section Title */
-.hf-spotlight-heading {
-    margin-bottom: 24px;
-}
-
-.hf-spotlight-title {
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1.3;
-    margin: 0;
-    color: #111;
-}
-
-/* Layout */
-.hf-spotlight-layout {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 18px;
-    align-items: stretch;
-}
-
-/* LEFT BIG */
-.hf-spotlight-main {
-    background: #fff;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-}
-
-.hf-spotlight-main-thumb {
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-}
-
-.hf-spotlight-main-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.hf-spotlight-main-content {
-    padding: 22px;
-}
-
-.hf-spotlight-main-title {
-    font-size: 28px;
-    line-height: 1.3;
-    margin: 0 0 12px;
-}
-
-.hf-spotlight-main-title a {
-    text-decoration: none;
-    color: #111;
-}
-
-.hf-spotlight-main-desc {
-    font-size: 15px;
-    line-height: 1.7;
-    color: #666;
-    margin: 0;
-}
-
-/* RIGHT SMALL */
-.hf-spotlight-side {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.hf-spotlight-side-card {
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-}
-
-.hf-spotlight-side-thumb {
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-}
-
-.hf-spotlight-side-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.hf-spotlight-side-content {
-    padding: 14px;
-}
-
-.hf-spotlight-side-title {
-    font-size: 16px;
-    line-height: 1.4;
-    margin: 0;
-}
-
-.hf-spotlight-side-title a {
-    text-decoration: none;
-    color: #111;
-}
-
-/* MOBILE tetap 2 kolom kiri-kanan */
-@media (max-width: 768px) {
-    #hfSpotlightSection {
-        margin-top: 16px;
-        padding: 0;
-    }
-
-    .hf-spotlight-heading {
-        margin-bottom: 12px;
-    }
-
-    .hf-spotlight-title {
-        font-size: 20px;
-        line-height: 1.3;
-    }
-
-    .hf-spotlight-layout {
-        grid-template-columns: 2fr 1fr;
-        gap: 6px;
-    }
-
-    .hf-spotlight-main {
-        border-radius: 10px;
-    }
-
-    .hf-spotlight-side {
-        gap: 6px;
-    }
-
-    .hf-spotlight-side-card {
-        border-radius: 10px;
-    }
-
-    .hf-spotlight-main-content {
-        padding: 10px;
-    }
-
-    .hf-spotlight-main-title {
-        font-size: 14px;
-        line-height: 1.4;
-        margin-bottom: 6px;
-    }
-
-    .hf-spotlight-main-desc {
-        font-size: 11px;
-        line-height: 1.5;
-    }
-
-    .hf-spotlight-side-content {
-        padding: 8px;
-    }
-
-    .hf-spotlight-side-title {
-        font-size: 12px;
-        line-height: 1.4;
-    }
-}
-</style>
 
         <!-- EXPLORE BY COUNTRY -->
         <div class="country-toggle" id="countryToggle" onclick="this.classList.toggle('open'); document.getElementById('countryWrap').classList.toggle('open');">
@@ -869,11 +486,10 @@ layout: null
             </div>
         </div>
 
+        <p id="footerPara">Discover the beauty of the world through our travel blog. Explore stunning destinations, travel guides, and more.</p>
+
     </div>
-<br />
-<p>
-Discover the beauty of Albania through its stunning beaches, historic cities, breathtaking mountains, and rich cultural heritage.
-</p><br />
+
 {% include footer.html %}
 {% include /ads/gobloggugel/sosmed.html %}
 </div>
