@@ -497,7 +497,7 @@ layout: null
 
         <div id="homeFeaturedWrap" class="section-order">
             <h2>Must Read</h2>
-            {% assign main_post = site.categories.pisah01 | first %}
+            {% assign main_post = site.categories.pisah01c | first %}
             {% if main_post %}
             <div class="home-featured-main">
                 <a href="{{ main_post.url }}">{% if main_post.image %}<div class="home-featured-thumb"><img src="{{ main_post.image | relative_url }}" alt="{{ main_post.title }}" loading="lazy"></div>{% endif %}</a>
@@ -509,7 +509,7 @@ layout: null
             </div>
             {% endif %}
             <div class="home-featured-grid">
-                {% for post in site.categories.pisah01 limit:4 offset:1 %}
+                {% for post in site.categories.pisah01c limit:4 offset:1 %}
                 <div class="home-grid-card">
                     {% if post.image %}<div class="home-grid-thumb"><a href="{{ post.url }}"><img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy"></a></div>{% endif %}
                     <div class="home-grid-content">
