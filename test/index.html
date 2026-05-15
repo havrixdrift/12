@@ -119,6 +119,7 @@ layout: null
             display:inline-block;background:#1a1a1a;padding:1px 6px;
             border-radius:8px;font-size:9px;color:#999;text-decoration:none;margin-top:4px
         }
+        .post-card-label:hover{background:#333;color:#fff}
         
         .single-post-view{
             background:#111;padding:16px;border-radius:8px;
@@ -215,10 +216,10 @@ layout: null
     <div class="breadcrumb" id="breadcrumb"><a href="/">Home</a></div>
 
     <form class="search-wrap" id="searchForm" action="/" method="get">
-        <input class="search-input" type="search" name="label" id="searchInput" placeholder="Search name..." aria-label="Search">
+        <input class="search-input" type="search" name="label" id="searchInput" placeholder="Search name + leaked..." aria-label="Search">
         <button class="search-btn" type="submit">Search</button>
     </form>
-    <p class="search-hint" id="searchHint">Try: name leaked</p>
+    <p class="search-hint" id="searchHint">Try: name leaked, viral, terbaru</p>
 
     <h1 id="pageHeading">Loading...</h1>
     <p class="desc" id="siteDesc"></p>
@@ -281,7 +282,6 @@ layout: null
         function strip(h){if(!h)return'';const d=document.createElement('div');d.innerHTML=h;return(d.textContent||'').replace(/\s+/g,' ').trim()}
         function fd(d){try{return new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}catch(e){return d}}
         
-        // Alt text = judul + semua label
         function altText(title, categories){
             const parts = [title];
             if(categories && categories.length) parts.push(categories.join(', '));
@@ -334,20 +334,23 @@ layout: null
                 const author = post.author?.[0]?.name?.$t||'';
                 const imgAlt = altText(title, cats);
                 
+                // SEO: Fokus nama + leak
                 let seoTitle = title;
-                const leakedTerms = ['leaked','leak','viral','terbaru','exclusive','hot'];
+                const leakedTerms = ['leaked','leak','viral','terbaru','exclusive','hot','terkini'];
                 const hasLeakedTerm = leakedTerms.some(t=>title.toLowerCase().includes(t));
                 if(!hasLeakedTerm && cats.some(c=>leakedTerms.some(t=>c.toLowerCase().includes(t)))){
                     seoTitle = title + ' Leaked Photos';
+                } else if(!hasLeakedTerm){
+                    seoTitle = title + ' Leaked';
                 }
                 
                 document.title = seoTitle + ' — ' + displayName;
                 $('pageHeading').textContent = title;
-                $('siteDesc').textContent = 'View photos of ' + title + ' on ' + displayName + '.';
+                $('siteDesc').textContent = 'View latest leaked photos of ' + title + ' on ' + displayName + '.';
                 
                 const md = document.querySelector('meta[name="description"]')||document.createElement('meta');
                 md.name = 'description';
-                md.content = 'View latest photos and updates of ' + title + ' on ' + displayName + '.';
+                md.content = 'View latest leaked photos, viral content, and exclusive updates of ' + title + ' on ' + displayName + '.';
                 if(!md.parentNode) document.head.appendChild(md);
                 
                 let breadHtml = '<a href="/">Home</a>';
@@ -359,17 +362,16 @@ layout: null
                 breadHtml += ' &rsaquo; <span>'+esc(title)+'</span>';
                 $('breadcrumb').innerHTML = breadHtml;
                 
-                // Single post render dengan alt gambar dari konten
                 let html = '<article class="single-post-view">';
                 html += '<h1 class="post-title">'+esc(title)+'</h1>';
                 html += '<div class="post-meta">';
                 if(author) html += '<span>'+esc(author)+'</span>';
                 if(date) html += '<time datetime="'+(post.published?.$t||'')+'">'+date+'</time>';
                 if(cats.length) html += cats.map(c=>
-                    '<a href="/?label='+encodeURIComponent(c)+'" class="post-label-link">#'+esc(c)+'</a>'
+                    '<a href="/?label='+encodeURIComponent(c)+'" class="post-label-link">'+esc(c)+'</a>'
                 ).join('');
                 html += '</div>';
-                // Tambahkan alt ke semua gambar di konten
+                
                 let fixedContent = content;
                 fixedContent = fixedContent.replace(/<img([^>]*)alt="([^"]*)"([^>]*)>/gi, function(match, before, oldAlt, after){
                     return '<img'+before+'alt="'+esc(imgAlt)+'"'+after+'>';
@@ -380,7 +382,6 @@ layout: null
                 html += '<div class="post-body">'+fixedContent+'</div>';
                 html += '</article>';
                 
-                // Related posts
                 const relatedPosts = allEntries.filter(e=>{
                     const link = (e.link||[]).find(l=>l.rel==='alternate')?.href||'';
                     const slug = link.split('/').pop().replace('.html','');
@@ -390,7 +391,7 @@ layout: null
                 }).slice(0,4);
                 
                 if(relatedPosts.length){
-                    html += '<div class="related-section"><h3>More Photos</h3><div class="related-grid">';
+                    html += '<div class="related-section"><h3>More Leaked Photos</h3><div class="related-grid">';
                     relatedPosts.forEach(e=>{
                         const t = e.title?.$t||'Untitled';
                         const link = (e.link||[]).find(l=>l.rel==='alternate')?.href||'#';
@@ -429,19 +430,20 @@ layout: null
         if(LABEL){
             $('searchHint').textContent = 'Showing results for: ' + LABEL;
         } else {
-            $('searchHint').textContent = 'Try: name leaked, viral, terbaru';
+            $('searchHint').textContent = 'Try: name leaked, viral, terbaru, exclusive';
         }
         
+        // SEO: Semua halaman fokus nama + leak
         if(LABEL){
-            const isLeakedQuery = /leak|viral|terbaru|exclusive|hot/i.test(LABEL);
+            const isLeakedQuery = /leak|viral|terbaru|exclusive|hot|terkini/i.test(LABEL);
             let pageTitle, pageDesc;
             
             if(isLeakedQuery){
-                pageTitle = LABEL + ' Photos — ' + displayName;
-                pageDesc = 'View ' + LABEL + ' photos and updates on ' + displayName + '. Latest collection.';
+                pageTitle = LABEL + ' — ' + displayName;
+                pageDesc = 'View ' + LABEL + ' leaked photos, viral content, and exclusive updates on ' + displayName + '.';
             } else {
-                pageTitle = LABEL + ' Leaked Photos & Updates — ' + displayName;
-                pageDesc = 'View latest ' + LABEL + ' leaked photos, viral content, and updates on ' + displayName + '.';
+                pageTitle = LABEL + ' Leaked Photos & Viral Updates — ' + displayName;
+                pageDesc = 'View latest ' + LABEL + ' leaked photos, viral content, and exclusive updates on ' + displayName + '. Browse the full collection.';
             }
             
             document.title = pageTitle;
@@ -457,13 +459,13 @@ layout: null
             $('filterBar').innerHTML = 'Category: <strong>'+esc(LABEL)+'</strong> <a href="/">Clear</a>';
             $('breadcrumb').innerHTML = '<a href="/">Home</a> &rsaquo; <span>'+esc(LABEL)+'</span>';
         } else {
-            document.title = displayName + ' — Photo Collection';
+            document.title = displayName + ' — Leaked Photos & Viral Collection';
             $('pageHeading').textContent = displayName;
-            $('siteDesc').textContent = 'Latest photo collection and updates.';
+            $('siteDesc').textContent = 'Latest leaked photos, viral content, and exclusive updates. Browse the full collection.';
             
             const md = document.createElement('meta');
             md.name = 'description';
-            md.content = 'Latest photo collection, viral content, and updates on ' + displayName + '.';
+            md.content = 'Latest leaked photos, viral content, and exclusive updates on ' + displayName + '. New photos added regularly.';
             document.head.appendChild(md);
         }
         
@@ -524,7 +526,7 @@ layout: null
                     
                     const infoBar = document.createElement('div');
                     infoBar.className = 'info-msg';
-                    infoBar.innerHTML = 'No results for "<strong>'+esc(LABEL)+'</strong>". Showing latest posts instead.';
+                    infoBar.innerHTML = 'No results for "<strong>'+esc(LABEL)+'</strong>". Showing latest leaked photos instead.';
                     container.parentNode.insertBefore(infoBar, container);
                     
                     $('filterBar').style.display = 'none';
@@ -536,7 +538,7 @@ layout: null
             const total = parseInt(feed.openSearch$totalResults?.$t)||entries.length;
             
             let html = '<p class="count-bar">Showing '+
-                START+'-'+(START+entries.length-1)+' of '+total+' posts</p>';
+                START+'-'+(START+entries.length-1)+' of '+total+' leaked photos</p>';
             
             html += '<div class="post-grid">';
             
@@ -563,7 +565,7 @@ layout: null
                 html += '<span class="post-card-title">'+esc(t)+'</span>';
                 if(date) html += '<div class="post-card-meta">'+date+'</div>';
                 if(cats.length) html += cats.slice(0,2).map(c=>
-                    '<span class="post-card-label">#'+esc(c)+'</span>'
+                    '<span class="post-card-label">'+esc(c)+'</span>'
                 ).join('');
                 html += '</div></a>';
             }
