@@ -20,8 +20,10 @@ layout: null
             padding:70px 16px 20px;
             background:#f5f5f5;
             color:#1a1a2e;
-            line-height:1.5;
+            line-height:1.6;
         }
+        
+        /* Header */
         .header{
             display:flex;align-items:center;justify-content:space-between;
             padding:10px 16px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08);
@@ -38,6 +40,7 @@ layout: null
         .header-btn:active{background:rgba(0,0,0,.05)}
         .header-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round}
         
+        /* Menu */
         .menu{
             display:none;position:fixed;z-index:99;background:#fff;
             border:1px solid #e0e0e0;padding:12px;border-radius:8px;
@@ -46,6 +49,15 @@ layout: null
         .menu a{display:block;padding:8px 12px;color:#333;text-decoration:none;border-radius:4px;font-size:13px;font-weight:500}
         .menu a:active{background:rgba(0,0,0,.05)}
         
+        /* Back button */
+        .back-link{
+            display:inline-flex;align-items:center;gap:4px;color:#4a90d9;
+            text-decoration:none;font-size:13px;font-weight:500;margin-bottom:16px
+        }
+        .back-link:hover{text-decoration:underline}
+        .back-link svg{width:16px;height:16px}
+        
+        /* Search */
         .search-wrap{display:flex;gap:6px;margin-bottom:16px}
         .search-input{
             flex:1;padding:8px 12px;border:1px solid #ddd;border-radius:6px;
@@ -58,35 +70,82 @@ layout: null
         }
         .search-btn:active{background:#357abd}
         
+        /* Breadcrumb */
         .breadcrumb{margin-bottom:12px;font-size:12px;color:#999}
         .breadcrumb a{color:#666;text-decoration:none}
+        .breadcrumb a:hover{color:#4a90d9}
         .breadcrumb span{color:#333;font-weight:600}
         
+        /* Filter & Info */
         .filter-bar{
             display:flex;align-items:center;gap:8px;padding:8px 12px;
             background:#fff;border-radius:6px;margin-bottom:12px;font-size:12px;color:#666
         }
         .filter-bar a{margin-left:auto;color:#4a90d9;text-decoration:none;font-weight:600}
-        
         .info-msg{
             padding:8px 12px;background:#fff3cd;border:1px solid #ffc107;
             border-radius:6px;margin-bottom:12px;font-size:12px;color:#856404
         }
         
+        /* Headings */
         h1{font-size:20px;margin-bottom:4px}
         .desc{font-size:12px;color:#999;margin-bottom:16px}
         
+        /* Post Card (list view) */
         .post{
             background:#fff;padding:16px;margin-bottom:12px;border-radius:8px;
             box-shadow:0 1px 3px rgba(0,0,0,.06)
         }
         .post-img{width:100%;height:auto;border-radius:4px;margin-bottom:10px;display:block}
-        .post h2{font-size:17px;margin-bottom:6px}
-        .post h2 a{color:#1a1a2e;text-decoration:none}
+        .post h2, .post h1{font-size:17px;margin-bottom:6px}
+        .post h2 a, .post h1 a{color:#1a1a2e;text-decoration:none}
+        .post h2 a:hover, .post h1 a:hover{color:#4a90d9}
         .post-meta{font-size:11px;color:#999;margin-bottom:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
         .post-label{display:inline-block;background:#f0f0f0;padding:2px 8px;border-radius:10px;font-size:10px;color:#666;text-decoration:none}
+        .post-label:hover{background:#e0e0e0}
         .post-snippet{font-size:13px;color:#555;line-height:1.5}
         
+        /* Single Post View */
+        .single-post .post-content{
+            font-size:15px;line-height:1.7;color:#333
+        }
+        .single-post .post-content img{
+            max-width:100%;height:auto;border-radius:6px;margin:12px 0
+        }
+        .single-post .post-content pre{
+            background:#f5f5f5;padding:12px;border-radius:6px;overflow-x:auto;font-size:13px;margin:12px 0
+        }
+        .single-post .post-content code{
+            background:#f0f0f0;padding:2px 6px;border-radius:3px;font-size:13px
+        }
+        .single-post .post-content pre code{
+            background:none;padding:0
+        }
+        .single-post .post-content blockquote{
+            border-left:3px solid #4a90d9;padding-left:12px;color:#666;margin:12px 0;font-style:italic
+        }
+        .single-post .post-content a{color:#4a90d9}
+        .single-post .post-content h2,.single-post .post-content h3{
+            margin:16px 0 8px;font-size:18px
+        }
+        .single-post .post-content ul,.single-post .post-content ol{
+            margin:8px 0;padding-left:20px
+        }
+        .single-post .post-content li{margin:4px 0}
+        
+        /* Related Posts */
+        .related-section{margin-top:24px}
+        .related-section h3{font-size:16px;margin-bottom:12px;color:#333}
+        .related-posts{display:flex;flex-wrap:wrap;gap:8px}
+        .related-post{
+            flex:1 1 calc(50% - 4px);min-width:150px;background:#fff;
+            padding:12px;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.06);text-decoration:none
+        }
+        .related-post:hover{box-shadow:0 2px 8px rgba(0,0,0,.1)}
+        .related-post-img{width:100%;height:100px;object-fit:cover;border-radius:4px;margin-bottom:8px}
+        .related-post-title{font-size:13px;font-weight:600;color:#1a1a2e;line-height:1.3}
+        
+        /* Pagination */
         .pagination{display:flex;justify-content:center;gap:6px;margin-top:20px}
         .pagination a,.pagination span{
             display:inline-flex;align-items:center;justify-content:center;
@@ -98,11 +157,13 @@ layout: null
         .pagination .current{background:#4a90d9;color:#fff;font-weight:700}
         .pagination .disabled{opacity:.3;pointer-events:none;background:#f5f5f5}
         
+        /* States */
         .loading,.error,.empty{text-align:center;padding:40px 20px;color:#999;font-size:14px}
         .error{color:#c0392b}
         
-        footer{margin-top:24px;padding-top:12px;border-top:1px solid #eee;text-align:center;font-size:11px;color:#999}
+        footer{margin-top:32px;padding-top:16px;border-top:1px solid #eee;text-align:center;font-size:11px;color:#999}
         
+        /* Dark mode */
         @media(prefers-color-scheme:dark){
             body{background:#1a1a1a;color:#e0e0e0}
             .header,.menu,.post,.filter-bar{background:#2d2d2d}
@@ -111,12 +172,19 @@ layout: null
             .menu{border-color:#444}
             .menu a{color:#ccc}
             .search-input{background:#2d2d2d;border-color:#444;color:#e0e0e0}
-            .post h2 a{color:#e0e0e0}
-            .post-snippet{color:#bbb}
+            .post h2 a,.post h1 a{color:#e0e0e0}
+            .post-snippet,.post-content{color:#bbb}
             .post-label{background:#3d3d3d;color:#bbb}
+            .post-label:hover{background:#555}
             .pagination a{background:#333;color:#bbb}
             .breadcrumb span,.filter-bar{color:#bbb}
             .info-msg{background:#3d3520;border-color:#665500;color:#e0c860}
+            .single-post .post-content pre{background:#333}
+            .single-post .post-content code{background:#444;color:#ddd}
+            .single-post .post-content pre code{background:none}
+            .single-post .post-content blockquote{color:#bbb}
+            .related-post{background:#2d2d2d}
+            .related-post-title{color:#e0e0e0}
             footer{border-color:#333}
         }
     </style>
@@ -125,6 +193,7 @@ layout: null
 </head>
 <body>
 
+    <!-- HEADER -->
     <header class="header">
         <div class="header-brand">
             <svg class="header-svg" viewBox="0 0 100 100" aria-hidden="true">
@@ -139,6 +208,7 @@ layout: null
         </button>
     </header>
 
+    <!-- MENU -->
     <nav class="menu" id="menuPanel">
         <a href="/">Home</a>
         <a href="/contact/">Contact</a>
@@ -146,19 +216,28 @@ layout: null
         <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
     </nav>
 
+    <!-- BACK BUTTON (Single Post) -->
+    <a class="back-link" id="backLink" style="display:none" href="/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to posts
+    </a>
+
+    <!-- BREADCRUMB -->
     <div class="breadcrumb" id="breadcrumb">
         <a href="/">Home</a>
     </div>
 
-    <form class="search-wrap" action="/" method="get">
+    <!-- SEARCH (hidden in single post) -->
+    <form class="search-wrap" id="searchForm" action="/" method="get">
         <input class="search-input" type="search" name="label" placeholder="Search label..." aria-label="Search by label">
         <button class="search-btn" type="submit">Search</button>
     </form>
 
+    <!-- MAIN CONTENT -->
     <h1 id="pageHeading">Loading...</h1>
     <p class="desc" id="siteDesc"></p>
     <div class="filter-bar" id="filterBar" style="display:none"></div>
-    <div id="postList"><p class="loading">Loading posts...</p></div>
+    <div id="mainContent"><p class="loading">Loading posts...</p></div>
     <div class="pagination" id="pagination"></div>
 
     <footer>{% include footer.html %}</footer>
@@ -174,12 +253,8 @@ layout: null
         if(parts.length>2&&parts[0]==='www') displayName = parts[1];
         displayName = displayName.replace(/[\.-]/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
         
-        // Hue from hash
-        let h=0;for(let i=0;i<host.length;i++)h=((h<<5)-h+host.charCodeAt(i))|0;
-        
-        // 3 letters
+        // 3 letters for SVG
         const letters = displayName.replace(/[^a-zA-Z0-9]/g,'').toUpperCase().substring(0,3)||'B';
-        
         $('brandSvgText').textContent = letters;
         $('blogTitle').textContent = displayName;
         
@@ -212,45 +287,206 @@ layout: null
         // URL params
         const p = new URLSearchParams(location.search);
         const LABEL = p.get('label')||'';
+        const POST_SLUG = p.get('p')||'';
         const MAX = parseInt(p.get('max-results'))||15;
         const START = parseInt(p.get('start-index'))||1;
         const BID = p.get('blogid')||'3849070220815751744';
+        
+        // Canonical = URL saat ini
+        $('canonicalUrl').href = location.href;
+        
+        // ============================================
+        // SINGLE POST MODE
+        // ============================================
+        if(POST_SLUG){
+            // Sembunyikan search form
+            $('searchForm').style.display = 'none';
+            
+            // Tampilkan back button
+            $('backLink').style.display = 'inline-flex';
+            // Back button arahkan ke halaman sebelumnya atau home
+            if(document.referrer && document.referrer.includes(host)){
+                $('backLink').href = document.referrer;
+            }
+            
+            // Ambil postingan via feed (cari by slug)
+            const feedUrl = (host.includes('blogspot.com')?
+                'https://'+host+'/feeds/posts/default':
+                'https://www.blogger.com/feeds/'+BID+'/posts/default')+
+                '?alt=json-in-script&callback=sp&max-results=1';
+            
+            window.sp = function(data){
+                const feed = data.feed;
+                const container = $('mainContent');
+                
+                if(!feed||!feed.entry){
+                    container.innerHTML = '<p class="error">Post not found.</p>';
+                    return;
+                }
+                
+                const entries = Array.isArray(feed.entry)?feed.entry:[feed.entry];
+                
+                // Cari postingan yang slug-nya cocok
+                const post = entries.find(e=>{
+                    const link = (e.link||[]).find(l=>l.rel==='alternate')?.href||'';
+                    const slug = link.split('/').pop().replace('.html','');
+                    return slug === POST_SLUG;
+                });
+                
+                if(!post){
+                    // Slug tidak cocok, coba fetch dengan URL spesifik
+                    const altLink = entries[0]?.link?.find(l=>l.rel==='alternate')?.href||'';
+                    const slug2 = altLink.split('/').pop().replace('.html','');
+                    if(slug2 !== POST_SLUG){
+                        container.innerHTML = '<p class="error">Post not found.</p>';
+                        return;
+                    }
+                    renderSinglePost(entries[0], container);
+                } else {
+                    renderSinglePost(post, container);
+                }
+            };
+            
+            function renderSinglePost(post, container){
+                const title = post.title?.$t||'Untitled';
+                const date = fd(post.published?.$t);
+                const content = post.content?.$t||post.summary?.$t||'';
+                const cats = (post.category||[]).map(c=>c.term).filter(Boolean);
+                
+                // Update meta
+                document.title = title + ' — ' + displayName;
+                $('pageHeading').textContent = title;
+                $('siteDesc').textContent = strip(content).substring(0,160);
+                
+                const md = document.querySelector('meta[name="description"]')||document.createElement('meta');
+                md.name = 'description';
+                md.content = strip(content).substring(0,160);
+                if(!md.parentNode) document.head.appendChild(md);
+                
+                // Breadcrumb
+                if(cats.length){
+                    $('breadcrumb').innerHTML = '<a href="/">Home</a> &rsaquo; '+
+                        cats.map(c=>'<a href="/?label='+encodeURIComponent(c)+'">'+esc(c)+'</a>').join(', ')+
+                        ' &rsaquo; <span>'+esc(title)+'</span>';
+                } else {
+                    $('breadcrumb').innerHTML = '<a href="/">Home</a> &rsaquo; <span>'+esc(title)+'</span>';
+                }
+                
+                // Render
+                let html = '<article class="post single-post">';
+                html += '<div class="post-meta">';
+                if(date) html += '<time datetime="'+(post.published?.$t||'')+'">'+date+'</time>';
+                if(cats.length) html += cats.map(c=>
+                    '<a href="/?label='+encodeURIComponent(c)+'" class="post-label">#'+esc(c)+'</a>'
+                ).join('');
+                html += '</div>';
+                html += '<div class="post-content">'+content+'</div>';
+                html += '</article>';
+                
+                // Related posts
+                if(cats.length){
+                    html += '<div class="related-section"><h3>Related Posts</h3>';
+                    html += '<p style="font-size:13px;color:#999">Loading related posts...</p></div>';
+                }
+                
+                container.innerHTML = html;
+                $('pagination').innerHTML = '';
+                
+                // Load related posts
+                if(cats.length){
+                    loadRelatedPosts(cats[0]);
+                }
+            }
+            
+            function loadRelatedPosts(label){
+                const url = (host.includes('blogspot.com')?
+                    'https://'+host+'/feeds/posts/default':
+                    'https://www.blogger.com/feeds/'+BID+'/posts/default')+
+                    '?alt=json-in-script&callback=rp&max-results=5&category='+encodeURIComponent(label);
+                
+                window.rp = function(data){
+                    const feed = data.feed;
+                    if(!feed||!feed.entry) return;
+                    
+                    const entries = Array.isArray(feed.entry)?feed.entry:[feed.entry];
+                    // Filter out current post
+                    const related = entries.filter(e=>{
+                        const link = (e.link||[]).find(l=>l.rel==='alternate')?.href||'';
+                        const slug = link.split('/').pop().replace('.html','');
+                        return slug !== POST_SLUG;
+                    }).slice(0,4);
+                    
+                    if(!related.length) return;
+                    
+                    let html = '<div class="related-section"><h3>Related Posts</h3><div class="related-posts">';
+                    related.forEach(e=>{
+                        const t = e.title?.$t||'Untitled';
+                        const link = (e.link||[]).find(l=>l.rel==='alternate')?.href||'#';
+                        const slug = link.split('/').pop().replace('.html','');
+                        const thumb = hd(e.media$thumbnail?.url);
+                        const relUrl = '/?p='+slug+(BID!=='3849070220815751744'?'&blogid='+BID:'');
+                        
+                        html += '<a href="'+relUrl+'" class="related-post">';
+                        if(thumb) html += '<img class="related-post-img" src="'+thumb+'" alt="'+esc(t)+'" loading="lazy">';
+                        html += '<span class="related-post-title">'+esc(t)+'</span></a>';
+                    });
+                    html += '</div></div>';
+                    
+                    const container = $('mainContent');
+                    const existing = container.querySelector('.related-section');
+                    if(existing) existing.outerHTML = html;
+                    else container.innerHTML += html;
+                };
+                
+                const s = document.createElement('script');
+                s.src = url;
+                s.async = true;
+                document.head.appendChild(s);
+            }
+            
+            // Load single post
+            const s = document.createElement('script');
+            s.src = feedUrl;
+            s.async = true;
+            document.head.appendChild(s);
+            
+            return; // Stop here, don't execute list mode
+        }
+        
+        // ============================================
+        // LIST MODE (existing code)
+        // ============================================
         
         // Set search value
         const si = document.querySelector('.search-input');
         if(si && LABEL) si.value = LABEL;
         
-        // Title & meta
-        let title = displayName+' — Blog';
-        let desc = 'Collection of articles and notes.';
-        if(LABEL){title=LABEL+' — '+displayName;desc='Posts under "'+LABEL+'"';}
-        if(START>1)title+=' — Page '+(Math.floor((START-1)/MAX)+1);
-        
-        document.title = title;
-        $('pageHeading').textContent = displayName;
-        $('siteDesc').textContent = desc;
-        
-        const md = document.createElement('meta');
-        md.name='description';md.content=desc;
-        document.head.appendChild(md);
-        
-        // Canonical - kalau label tidak ditemukan, canonical tetap ke halaman tanpa label
-        const cp = new URLSearchParams();
-        if(LABEL) cp.set('label',LABEL);
-        if(MAX!==15) cp.set('max-results',MAX);
-        const canon = $('canonicalUrl');
-        if(canon) canon.href = cp.toString()?location.origin+'/?'+cp:location.origin+'/';
-        
-        // Filter bar
+        // Title & meta (QUERY = identitas halaman)
         if(LABEL){
-            const fb = $('filterBar');
-            fb.style.display='flex';
-            fb.innerHTML='Filter: <strong>'+esc(LABEL)+'</strong> <a href="/">Clear</a>';
-        }
-        
-        // Breadcrumb
-        if(LABEL){
-            $('breadcrumb').innerHTML='<a href="/">Home</a> &rsaquo; <span>'+esc(LABEL)+'</span>';
+            const pageTitle = LABEL + ' — ' + displayName;
+            const pageDesc = 'Posts and articles about ' + LABEL + ' on ' + displayName + '.';
+            
+            document.title = pageTitle;
+            $('pageHeading').textContent = LABEL;
+            $('siteDesc').textContent = pageDesc;
+            
+            const md = document.createElement('meta');
+            md.name = 'description';
+            md.content = pageDesc;
+            document.head.appendChild(md);
+            
+            $('filterBar').style.display = 'flex';
+            $('filterBar').innerHTML = 'Browsing: <strong>'+esc(LABEL)+'</strong> <a href="/">Clear</a>';
+            $('breadcrumb').innerHTML = '<a href="/">Home</a> &rsaquo; <span>'+esc(LABEL)+'</span>';
+        } else {
+            document.title = displayName + ' — Blog';
+            $('pageHeading').textContent = displayName;
+            $('siteDesc').textContent = 'Collection of articles and notes.';
+            
+            const md = document.createElement('meta');
+            md.name = 'description';
+            md.content = 'Collection of articles and notes from ' + displayName + '.';
+            document.head.appendChild(md);
         }
         
         // Helpers
@@ -260,7 +496,14 @@ layout: null
         function fd(d){try{return new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}catch(e){return d}}
         function il(u){
             if(!u)return'#';
-            try{const ur=new URL(u);if(ur.hostname===host)return ur.pathname+ur.search+ur.hash}catch(e){}
+            try{
+                const ur=new URL(u);
+                const slug = ur.pathname.split('/').pop().replace('.html','');
+                const pp = new URLSearchParams();
+                if(BID!=='3849070220815751744') pp.set('blogid',BID);
+                pp.set('p',slug);
+                return '/?'+pp.toString();
+            }catch(e){}
             return u;
         }
         
@@ -279,19 +522,17 @@ layout: null
             return base+'?'+fp.toString();
         }
         
-        // Main feed (pakai label kalau ada)
         let feedUrl = buildUrl(LABEL);
         let labelMatched = false;
         
-        // Render posts
+        // Render posts (LIST MODE)
         window.hp = function(data){
             const feed = data.feed;
-            const container = $('postList');
+            const container = $('mainContent');
             
-            // Kalau label tidak ditemukan & belum fallback → fetch ulang tanpa label
             if(LABEL && !labelMatched && (!feed||!feed.entry)){
-                labelMatched = true; // prevent infinite loop
-                feedUrl = buildUrl(''); // tanpa label
+                labelMatched = true;
+                feedUrl = buildUrl('');
                 const s = document.createElement('script');
                 s.src = feedUrl;
                 s.async = true;
@@ -304,9 +545,7 @@ layout: null
                 return;
             }
             
-            // Tampilkan info kalau label tidak cocok & menampilkan postingan terbaru
             if(LABEL && !labelMatched && feed.entry){
-                // Cek apakah hasil ini dari label atau fallback
                 const entries = Array.isArray(feed.entry)?feed.entry:[feed.entry];
                 const hasMatchingLabel = entries.some(e=>{
                     const cats = (e.category||[]).map(c=>c.term.toLowerCase());
@@ -315,25 +554,14 @@ layout: null
                 
                 if(!hasMatchingLabel){
                     labelMatched = true;
-                    // Tampilkan info bar
+                    
                     const infoBar = document.createElement('div');
                     infoBar.className = 'info-msg';
-                    infoBar.innerHTML = 'Label "<strong>'+esc(LABEL)+'</strong>" not found. Showing latest posts instead.';
+                    infoBar.innerHTML = 'No posts tagged "<strong>'+esc(LABEL)+'</strong>". Showing latest posts instead.';
                     container.parentNode.insertBefore(infoBar, container);
                     
-                    // Update canonical ke halaman tanpa label (hindari duplicate content)
-                    const cleanCanon = new URLSearchParams();
-                    if(MAX!==15) cleanCanon.set('max-results',MAX);
-                    if(canon) canon.href = cleanCanon.toString()?location.origin+'/?'+cleanCanon:location.origin+'/';
-                    
-                    // Update title
-                    document.title = displayName+' — Latest Posts';
-                    
-                    // Hapus filter bar
                     $('filterBar').style.display = 'none';
-                    
-                    // Reset breadcrumb
-                    $('breadcrumb').innerHTML = '<a href="/">Home</a> &rsaquo; <span>Latest Posts</span>';
+                    $('breadcrumb').innerHTML = '<a href="/">Home</a> &rsaquo; <span>'+esc(LABEL)+'</span> &rsaquo; <span>Latest Posts</span>';
                 }
             }
             
@@ -380,7 +608,7 @@ layout: null
             function bu(page){
                 const pp=new URLSearchParams();
                 if(BID!=='3849070220815751744')pp.set('blogid',BID);
-                if(LABEL && !labelMatched)pp.set('label',LABEL); // hanya tambah label kalau belum fallback
+                if(LABEL && !labelMatched)pp.set('label',LABEL);
                 if(MAX!==15)pp.set('max-results',MAX);
                 if(page>1)pp.set('start-index',(page-1)*MAX+1);
                 const q=pp.toString();return q?'/?'+q:'/';
@@ -407,7 +635,7 @@ layout: null
         const s = document.createElement('script');
         s.src = feedUrl;
         s.async = true;
-        s.onerror = ()=>$('postList').innerHTML='<p class="error">Failed to load.</p>';
+        s.onerror = ()=>$('mainContent').innerHTML='<p class="error">Failed to load.</p>';
         document.head.appendChild(s);
     })();
     </script>
