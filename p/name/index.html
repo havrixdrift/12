@@ -352,9 +352,9 @@ permalink: /name/
         }
         
         // ============================================
-        // MULTI BLOG FETCH
+        // MULTI BLOG FETCH - TANPA CATEGORY, FILTER CLIENT-SIDE
         // ============================================
-        function fetchAllBlogs(callback,useLabel,pageStart,pageMax){
+        function fetchAllBlogs(callback, useLabel, pageStart, pageMax){
             var allPosts=[];
             var completed=0;
             var totalBlogs=BLOG_IDS.length;
@@ -367,7 +367,7 @@ permalink: /name/
                 fp.set('callback','mb'+idx);
                 fp.set('max-results',pageMax);
                 fp.set('start-index',pageStart);
-                if(useLabel)fp.set('category',useLabel);
+                // TIDAK kirim category - filter di client-side
                 
                 window['mb'+idx]=function(data){
                     var feed=data.feed;
@@ -377,6 +377,13 @@ permalink: /name/
                     }
                     completed++;
                     if(completed>=totalBlogs){
+                        // Filter di sini setelah semua blog selesai
+                        if(useLabel){
+                            allPosts=allPosts.filter(function(post){
+                                var cats=(post.category||[]).map(function(c){return c.term;});
+                                return cats.indexOf(useLabel)!==-1;
+                            });
+                        }
                         var shuffled=seededShuffle(allPosts,seed+pageStart);
                         callback(shuffled,allPosts.length);
                     }
@@ -387,6 +394,12 @@ permalink: /name/
                 s.onerror=function(){
                     completed++;
                     if(completed>=totalBlogs){
+                        if(useLabel){
+                            allPosts=allPosts.filter(function(post){
+                                var cats=(post.category||[]).map(function(c){return c.term;});
+                                return cats.indexOf(useLabel)!==-1;
+                            });
+                        }
                         var shuffled=seededShuffle(allPosts,seed+pageStart);
                         callback(shuffled,allPosts.length);
                     }
@@ -445,7 +458,8 @@ permalink: /name/
             var md3=document.createElement('meta');md3.name='description';md3.content='Latest leaked photos, viral content, and exclusive updates on '+dn+'. New photos added regularly.';document.head.appendChild(md3);
         }
         
-        var perBlog=Math.ceil(MAX/BLOG_IDS.length);
+        // perBlog lebih besar karena tidak pakai filter category (ambil semua, filter nanti)
+        var perBlog=Math.ceil(MAX/BLOG_IDS.length)*3;
         fetchAllBlogs(function(posts){
             var container=$('mainContent');
             if(!posts.length){container.innerHTML='<p class="empty">No posts found.</p>';return;}
